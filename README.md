@@ -10,3 +10,5 @@ Create Suggested app name/ a different one was chosen
 After the group was formed, the project was chosen. The name of BitFarma was picked for the e-commerce Application we chose to work on. A logo will pprobably be agreed upon by vote.
 Two suggestions for logos were given.
 The less popular name BitMedic was also suggested for the Pharmacy application
+
+The logo for our Bit Farmacia application was chosen by vote, today.

@@ -32,109 +32,118 @@ Introducción: Breve descripción del proyecto. 
 
 Essential organizational pillars include: market analysis, marketing strategies, operational logistics, and human resources management. A significant portion of the material focuses on financial planning, detailing how to project sales, manage costs, and analyze cash flow over a multi-year period. Specifically, these business principles will be applied to a project involving a social security institute in El Salvador, and improving its pharmacy application by building a bitcoin payment option. Ultimately, the source serves as a structured guide for entrepreneurs to transform abstract business concepts into a documented, investment-ready strategy.
 
-Objetivos: Lista de objetivos principales que deseas alcanzar.
+Objetives:
+improve on the delivery of medications by both digital technology and economic motorcycle transportation.
 
-Cronograma: Fases del proyecto y fechas importantes.
+Cronology: 
+1 fase: Planning, define the business model, market analysis.
+2 fase: Marketing of product and services by placing ads.
+3 fase: Launch application.
+4 fase: Propose pharmacies to deliver meds to not only clients with chronic conditions. Educate these clients and the merchants on how to use the BitFarma Application and how to benefit from it, as part of the marketing campaign.
 
-Recursos: Personas, herramientas y materiales necesarios.
+Resources: 4 associates and 2 drivers, Computers, cel phones, office phone, and other necessary materials.
 
-Conclusión: Resumen y próximos pasos.
+General description of the Company.
+Social: The idea is to contribute and improve the national health system and at the same time achieve bitcoin adoption by incorporating the bitcoin payment form.
+Brief Description: We create code and design digital solutions to improve and benefit the pharmaceutical programs and their clients. We expand on what they've built by adding administrative features and user friendly applications. By including other sectors of the population, we can extend the services and increase deliveries, shorten wait times and benefit from option bitcoin as payment. 
 
-1. Descripción general de la empresa
-Razón social: La idea de contribuir al sistema social y al mismo tiempo Adopción de bitcoin cómo Forma de pago
 Nombre comercial : BitFarma
 Domicilio: Ahuachapan
-Teléfono:
- Email:
+Teléfono: 2365911934
+ Email: pendletoningrid@gmail.com 
  Web:
-
-Brief Description: We create code and design digital solutions to improve and benefit the pharmaceutical programs and their clients. We expand on what they've built by adding administrative features and user friendly applications. By including other sectors of the population, we can extend the services and increase deliveries, shorten wait times and benefit from option bitcoin as payment. 
 (Qué hace tu empresa, a qué se dedica, qué problema soluciona)
 
-Productos o servicios: Digital Applications, Write code to create solutions
+Productos o servicios: Digital Applications, Write code to create solutions. Last mile delivery options
 
-Descripción
+Precio: $ 8.00 1 month
 
-Precio: $ 8.00 a one time use
+$80,00  A one year subscription
 
-$35,00  A one year subscription
+Form of distribution: Social media, App shop, Farmacias. Deliveries other than with Correos El Salvador through ISSS.
 
-Forma de distribución: Social media, App shop, Farmacias. Deliveries other than with Correos El Salvador
+Factores de riesgo: adoption tied with btc price, Traffic delays, weather conditions/motorcycles.
 
-Factores de riesgo:  adoption tied with btc price 
+Ventaja competitiva: other services or apps don't include bitcoin payment. It helps both the merchant with keeping inventory and the user by order before sale point.
 
-Ventaja competitiva: other services or apps don't include bitcoin payment. It helps both the merchant and the user.
+Market profile:
+Everyone in the market benefits from no line-ups when payment methods include bitcoin, and when it can be delivered to anyone, not just recurrent clients.
 
-Perfil del mercado: Everyone in the market benefits from no line-ups, when payment methods include bitcoin, and when it can be delivered to anyone, not just recurrent clients.
-
-Type of clients: pretty much anyone who can use an app and has access to funds. The government and people in remote areas and bitcoiners.
+Type of clients: pretty much anyone who can use an app and has access to funds. The health system, people in remote areas and bitcoiners.
 
 In this context, BitFarma Application dove tails with the growing Bitcoin movement and the expats, who welcome sovereign alternatives to solving needs.
 
-Actores principales: Tech Developers, Business Executive, Sales Manager, Personal Deliverers who can trubleshoot
+Main actors: Tech Developers, Business Executive, Sales Manager, Personal Deliverers who can trubleshoot and educate
 
-Competidores: No
+Competidores: The ISSS delivery service joint with Correos El Salvador reaching only person's with chronic conditions and recurrent prescriptions
 
 Providers: 4
 
-Distributors: 4
+Distributors: 2
 
-Misión:
-Retired, wanting to be creative and enjoy life. Help others do the same. Create a nice and jobs. Build an environment where technology and innovation are available for others to just build things…
+Mission:
+Retired, wanting to be creative and enjoy life. Help others do the same. Create fulfilling jobs. Build an environment where technology and innovation are available for others to just build things. Excellence only!!
 
 Visión:
-Run a service that makes clients sovereign over their health and finances, facilitating a more circular economy allowing merchants to save btc. Clients get to benefit from no wait and pick up or delivery options.
+Run a service that makes clients sovereign over their health, finances  and time by facilitating a more circular economy allowing merchants to stack sats if they so decide. Clients get to benefit from order/pick up or home delivery options. I envision clients getting educated about the Btc Ecosystem by what we do and how we do it.
 
 Valores: Techs able to offer troubleshooting and personalized deliveries according to location. Digital convenience. 
-Branding showcasing: Quality, innovación, trabajo en equipo, personal touch.
+Branding showcasing: Quality, innovación, team work and compassionate personal vibe.
 
-Normativa aplicable:
+Norms:
 Applicable laws in the country, permits and regulations to be acquired
 
-2. Plan de ventas y marketing: publish a video of what the app does to getview at youtube, facebook and other platform
-Clientes objetivo:
-(Quiénes son, edad, intereses, necesidades) 18 to 70 years old, who possess a phone, tablet or pc.
+Marketing: publish a video of what the app is about, get youtube/facebook ad viewings and other platforms.
+Client objetive:
+18-70 year old owning a phone,tablet or pc.
 
 Estimate demand: 
-Digital technology is prevalent everywhere, therefore ads placed online have a tremendous market reach. Younger population could be stopping for their elders.
+Digital technology is prevalent everywhere, therefore, ads placed online have a tremendous market reach. Younger population could be shopping for their elders.
+Everyone's health is important and most people own a smart phone.
 
-Propuesta de valor: 
-Already existing successful system such as the ISSS is being improved by BitFarma by adding the convenience of uploading prescriptions, tracking inventory, preventing line-ups and have a bitcoin payment option.
-This application will be a smart choice for both merchants and users with the fun choice of bitcoin payment form.
-There is a sector of the population not covered by health insurance who would welcome this new app.
+Value offered: 
+Already existing successful system such as the ISSS is being improved by BitFarma by adding the convenience of uploading prescriptions, tracking inventory, preventing line-ups and having a bitcoin payment option.
+This application will be a smart choice for both merchants and users with the fun choice of bitcoin form of payment.
+There is a sector of the population which is not covered by health insurance that would welcome this new Application.
+The more apps with bitcoin payment option with an automatic conversion to USD,the more sovereing El Salvador becomes.
 
 Our brand id: 
 our image speaks of innovation in health and digital technology. Our style is sleek and easy to use. Our message is modern and efficient: Our app: your health sovereignty as part of a national Btc adoption.
 
 Client perspective:
-Ads and Subscriptions. Repeat business guaranteed when the client saves one fewer trip and not waiting in line. Meds are a basic need, some are recurrent.
+Ads and Subscriptions. Repeat business guaranteed when the client saves a trip and is not waiting in line. Meds are a basic need, some are recurrent.
 The merchant also doesn't run out of stock and communicates easily through the app for pick up or delivery.
-(Cómo te encuentran, compran y vuelven)
+Repeat convenience translates into repeat business. Form of payment options offer customer a choice, which in turn gives them a sense of sovereignty and dignity.
+Clients can call the members and the office. The company will maintain its website and have a chat agent.
+The Tech people are available to service any technical challenge. Also, it will count with a contact form.
 
 Objetivos de marketing:
-An already existing number of clients through the ISSS, sales data base and their position in the market. Reach out to this market population with a more convenient and improved version. Bitcoin adoption and circular economy encourage 
+An already existing number of clients through the ISSS, sales data base and their position in the market. One goal is to reach out to this market population with a more convenient and improved version of their delivery service. Bitcoin adoption and circular economy encourage the low transaccional fee which translates into low cost delivery while utilizing the BitFarma App.
 
-Clientes y proveedores actuales (si hay):
+The 4 owners are the first owners and providers.
 
-Estrategias de promoción:
-(Redes sociales, publicidad, promociones, etc. Blend convenience of the app features with more than one form of payment, like bitcoin.
+Promotional Estrategy:
+Social media, publicity, promotions, subcriptions and word of mouth. Blend convenience of the app features with more than one form of payment, like bitcoin. Promote the idea of having the delivery option as a time/money saver. Canvasing towns to demonstrations how product works and Orange Pill whenever possible.
 
-Servicio al cliente:
-On the phone and virtually. In person as well, when medications are delivered.
+Client Services:
+On the phone and virtually. In person as well, when medications are delivered, leave the Brand which money can't buy. Build community, build trust.
 
-3. Plan de operaciones (explotación)
+3 Operational Plan
 Ubicación: Ahuachapan
 Instalaciones: Commercial space office in Concepcion de Ataco.
 
 Equipment: 
 Tecnología: Computers and phones, coding and Public Relations
 Necesidades futuras: 
-Propiedad intelectual (si aplica): improved existent application
-Procesos clave: Accountant, one more Developer and Drivers. Trainer/Trainee graduate from Cubo+ Academy
-4. Plan de recursos humanos
-Estructura organizativa (organigrama):
+Propiedad intelectual (Our Business Model): improved existent application
+Key Processes: one more Developer and Drivers.Trainer/Trainee graduate from Cubo+ Academy
 
-Puestos y funciones:
+4.Organizational Structure:
+
+Positions and function:
+Business and Operations Manager
+Development Manager
+General Manager
 
 Contratación:
 In person
@@ -144,24 +153,24 @@ Horarios: 8 to 5
 Salarios y beneficios:
 $1500 per month and Isss
 
-Evaluación de desempeño: once a month
+Evaluation of performance: once a month
 
-Capacitación: once every 3 months
+Capacitación: once every a months
 
 5. Estructura jurídica
-Tipo de empresa: sociedad
+ Sociedad anónima 
 
-Property of::
+Property of:
 Group # 4
 
-Acuerdos legales:
+Legal binding:
 Contract with Lawyer
 
-6. Plan de acción
+6. Execution Plan
 Objective: Launch on January 1st, 2027
 
-7. Resumen ejecutivo
-Descripción del negocio
+7. Executive summary
+
 
 Objetivos
 
@@ -172,9 +181,10 @@ Ventaja competitiva:
 Graduates from Cubo+ Academy, highly ethical and professional
 
 Financial needs:
-Funds to have a Depot centrally located so Drivers can stay near the areas served.
+Funds for Depot centrally located so Drivers can stay near the areas served.
+
 Working team:
-Members showing loyalty, work ética and responsibility are a good match. Don't trust, verify. Character is a must fir excellence!
+Members showing loyalty, work ethics and responsibility are a good match. Don't trust, verify. Character is a must for excellence!
 
 Evaluación de riesgos:
 Aware of bitcoin price volatility and employee turnout.
@@ -188,32 +198,43 @@ Datos relevantes
 
 9. Plan financiero
 Basic data:
-Establish strategies such as address to the same residence for the Business Manager.
-Activities will initiate at Ataco’ address after space is arranged for Developers to build more product and maintain built ones. Might have to use the bus system for deliveries of meds.
+Establish strategies such as address to serve as the same residence for the Business Manager.
+Activities will initiate at Ataco’ address after space is arranged for Developers to build more product and maintain the built ones. Might have to use the bus system for deliveries of meds when a new driver is hired.
 
 Projected sales in a e year period:
 $150,000
 
 Costos:
 Fijos:
-4 salaries 1200 each.  Rent 400.00 utilities $80.00 maintenance $100.00
+4 salaries 1200 each.  Rent 600.00   utilities $80.00 maintenance $100.00
+Taxes; 70.00
 
-Variable costs: Salaries for new employees when sales increment.. Transportation: 2 vehicles: 5000 each Gasolina, marketing
+Variable costs: Salaries for new employees when sales increment: $1200.00, Transportation: vehicles:1. $5000.00, Gasolina:$1000, marketing:$75.00
+3 motorcycles: 1600 each ???
 
-Estados financieros:
-
-Estado de resultados
-
-Balance general;
-1000, 00
+Financial status
+1.House owner/Pension
+2.Small business
+3.Employee
+Resultado:
+Venture Capital needed
+Balance:
+1000,00
 
 Monthly flow:
 $5000
 
-Financing needed: $80,000
+Financing needed: $80,000 
 
 Indicators:
-An office might not be needed. However, to fix a physical space and save on rent in a very good location it's possible. Developers and a Dispatch built as a Lab where innovation happens and visitors who are curious, get orange pilled and find out about our producción of digital solutions.
+Developers and business owners trained and educated by world best experts, abiding by values, worthy principles and the Bitcoin Standard. 
+An office might not be needed. However, to fix a physical space and save on rent in a very good location it's possible because a member can privide some real estate. This can be a Hub and Dispatch built as a Lab where innovation happens and visitors who are curious, get orange pilled and find out about our producción of digital solutions.
+Prospective Future Business Escalability highly foreseeable. 
+Duplication will the take place at a different region. 
+
+
+
+
 
 
 

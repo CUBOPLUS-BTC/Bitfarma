@@ -1,0 +1,238 @@
+/* ===========================
+   Bitfarma - Custom Styles
+   Color scheme: ISSS Blue #003d82
+   =========================== */
+
+:root {
+  --isss-blue: #003d82;
+  --isss-blue-dark: #002d62;
+  --isss-blue-light: #e8f0fb;
+  --isss-blue-mid: #1a5fa8;
+}
+
+/* ---- Base ---- */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f4f7fb;
+  color: #222;
+}
+
+/* ---- ISSS Color Utilities ---- */
+.bg-isss {
+  background-color: var(--isss-blue) !important;
+}
+
+.text-isss {
+  color: var(--isss-blue) !important;
+}
+
+.btn-isss {
+  background-color: var(--isss-blue);
+  border-color: var(--isss-blue);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-isss:hover,
+.btn-isss:focus {
+  background-color: var(--isss-blue-dark);
+  border-color: var(--isss-blue-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 61, 130, 0.3);
+}
+
+.btn-outline-isss {
+  color: var(--isss-blue);
+  border-color: var(--isss-blue);
+  font-weight: 500;
+}
+
+.btn-outline-isss:hover {
+  background-color: var(--isss-blue);
+  border-color: var(--isss-blue);
+  color: #fff;
+}
+
+.nav-link.active.bg-isss {
+  color: #fff !important;
+}
+
+/* ---- Navbar ---- */
+.navbar.bg-isss {
+  background: linear-gradient(135deg, var(--isss-blue) 0%, var(--isss-blue-mid) 100%) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.2s;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  letter-spacing: 0.3px;
+}
+
+.badge.bg-white.text-isss {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--isss-blue) !important;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Cards ---- */
+.card {
+  border-radius: 12px;
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 61, 130, 0.12) !important;
+}
+
+.card-header {
+  border-radius: 12px 12px 0 0 !important;
+  font-weight: 600;
+}
+
+/* ---- Footer ---- */
+.footer-isss {
+  background: linear-gradient(135deg, var(--isss-blue) 0%, var(--isss-blue-mid) 100%);
+}
+
+/* ---- Upload area ---- */
+.upload-area {
+  border-color: #aac4e8 !important;
+  background: var(--isss-blue-light);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: var(--isss-blue) !important;
+  background: #d4e4f5;
+}
+
+.upload-area.drag-over {
+  transform: scale(1.01);
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+/* ---- Timeline ---- */
+.timeline-mini .rounded-circle {
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+/* ---- Tables ---- */
+.table th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table-dark th {
+  background-color: var(--isss-blue) !important;
+  border-color: var(--isss-blue-mid) !important;
+}
+
+/* ---- Badges ---- */
+.badge {
+  font-weight: 500;
+}
+
+/* ---- Forms ---- */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--isss-blue);
+  box-shadow: 0 0 0 0.25rem rgba(0, 61, 130, 0.15);
+}
+
+.form-check-input:checked {
+  background-color: var(--isss-blue);
+  border-color: var(--isss-blue);
+}
+
+/* ---- Alerts ---- */
+.alert {
+  border-radius: 10px;
+  border: none;
+}
+
+.alert-info {
+  background-color: var(--isss-blue-light);
+  color: var(--isss-blue);
+}
+
+/* ---- Nav pills ---- */
+.nav-pills .nav-link {
+  color: var(--isss-blue);
+  font-weight: 500;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: var(--isss-blue-light);
+}
+
+/* ---- Scrollbar (webkit) ---- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #b0c4de;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--isss-blue);
+}
+
+/* ---- Dropdown ---- */
+.dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* ---- Responsive tweaks ---- */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* ---- List group ---- */
+.list-group-item-action:hover {
+  background-color: var(--isss-blue-light);
+  color: var(--isss-blue);
+}
+
+/* ---- Print styles for labels ---- */
+@media print {
+  .navbar, .footer-isss, .btn, .alert { display: none !important; }
+  .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+}

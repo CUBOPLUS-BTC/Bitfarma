@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Reportes – Bitfarma{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="mb-4">
+  <h4 class="fw-bold mb-0">
+    <i class="bi bi-bar-chart-line me-2 text-isss"></i>Reportes del Sistema
+  </h4>
+</div>
+
+<!-- Status breakdown -->
+<div class="row g-3 mb-4">
+  {% for status, count in status_counts %}
+  {% set labels = {'pendiente': 'Pendientes', 'en_proceso': 'En Proceso', 'listo': 'Listas', 'entregado': 'Entregadas'} %}
+  {% set colors = {'pendiente': 'warning text-dark', 'en_proceso': 'info', 'listo': 'success', 'entregado': 'secondary'} %}
+  <div class="col-6 col-md-3">
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center">
+        <span class="badge bg-{{ colors.get(status, 'secondary') }} fs-4 px-3 py-2">{{ count }}</span>
+        <div class="mt-2 fw-semibold small">{{ labels.get(status, status) }}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="row g-4">
+  <!-- Orders per day chart -->
+  <div class="col-12 col-lg-7">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-calendar3 me-1"></i>Órdenes por Día
+      </div>
+      <div class="card-body">
+        {% if orders_by_day %}
+        <canvas id="ordersChart" height="100"></canvas>
+        {% else %}
+        <div class="text-center py-4 text-muted">
+          <i class="bi bi-bar-chart display-3 opacity-50"></i>
+          <p class="mt-2">Sin datos de órdenes aún.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Top medications -->
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-trophy me-1"></i>Medicamentos Más Dispensados
+      </div>
+      <div class="card-body p-0">
+        {% if top_meds %}
+        <div class="list-group list-group-flush">
+          {% for nombre, total in top_meds %}
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <span class="badge bg-isss me-2">{{ loop.index }}</span>
+              <span class="fw-semibold">{{ nombre }}</span>
+            </div>
+            <span class="badge bg-success rounded-pill">{{ total }} unidades</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-4 text-muted">
+          <i class="bi bi-capsule display-3 opacity-50"></i>
+          <p class="mt-2">Sin dispensaciones registradas.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% if orders_by_day %}
+<script>
+const labels = {{ orders_by_day | map(attribute=0) | list | tojson }};
+const data = {{ orders_by_day | map(attribute=1) | list | tojson }};
+
+new Chart(document.getElementById('ordersChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Órdenes',
+      data: data,
+      backgroundColor: 'rgba(0, 61, 130, 0.7)',
+      borderColor: 'rgba(0, 61, 130, 1)',
+      borderWidth: 1,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 1 } }
+    }
+  }
+});
+</script>
+{% endif %}
+{% endblock %}

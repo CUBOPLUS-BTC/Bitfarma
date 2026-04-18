@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Bitfarma{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  {% block head %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-isss shadow-sm">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('index') }}">
+      <i class="bi bi-hospital fs-4"></i>
+      <span class="fw-bold">Bitfarma</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      {% if current_user.is_authenticated %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if current_user.role == 'paciente' %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'patient_dashboard' %}active{% endif %}"
+               href="{{ url_for('patient_dashboard') }}">
+              <i class="bi bi-grid-1x2 me-1"></i>Mis Recetas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'patient_upload' %}active{% endif %}"
+               href="{{ url_for('patient_upload') }}">
+              <i class="bi bi-upload me-1"></i>Subir Receta
+            </a>
+          </li>
+        {% elif current_user.role == 'farmaceutico' %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'pharmacist_dashboard' %}active{% endif %}"
+               href="{{ url_for('pharmacist_dashboard') }}">
+              <i class="bi bi-clipboard2-pulse me-1"></i>Recetas Pendientes
+            </a>
+          </li>
+          {% if low_stock_count > 0 %}
+          <li class="nav-item">
+            <a class="nav-link text-warning" href="#">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>
+              <span class="badge bg-warning text-dark">{{ low_stock_count }}</span> Stock bajo
+            </a>
+          </li>
+          {% endif %}
+        {% elif current_user.role == 'admin' %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin_dashboard' %}active{% endif %}"
+               href="{{ url_for('admin_dashboard') }}">
+              <i class="bi bi-speedometer2 me-1"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin_inventory' %}active{% endif %}"
+               href="{{ url_for('admin_inventory') }}">
+              <i class="bi bi-box-seam me-1"></i>Inventario
+              {% if low_stock_count > 0 %}
+              <span class="badge bg-warning text-dark ms-1">{{ low_stock_count }}</span>
+              {% endif %}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin_users' %}active{% endif %}"
+               href="{{ url_for('admin_users') }}">
+              <i class="bi bi-people me-1"></i>Usuarios
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin_prescriptions' %}active{% endif %}"
+               href="{{ url_for('admin_prescriptions') }}">
+              <i class="bi bi-file-medical me-1"></i>Recetas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin_reports' %}active{% endif %}"
+               href="{{ url_for('admin_reports') }}">
+              <i class="bi bi-bar-chart-line me-1"></i>Reportes
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#"
+             data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-5"></i>
+            <span class="d-none d-lg-inline">{{ current_user.nombre_completo.split()[0] }}</span>
+            <span class="badge bg-white text-isss ms-1 small">{{ current_user.role }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li><span class="dropdown-item-text text-muted small">{{ current_user.nombre_completo }}</span></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item text-danger" href="{{ url_for('logout') }}">
+                <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      {% else %}
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}">
+            <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('register') }}">
+            <i class="bi bi-person-plus me-1"></i>Registrarse
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<!-- Flash messages -->
+<div class="container-fluid px-4 mt-3">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          <i class="bi bi-{% if category == 'success' %}check-circle{% elif category == 'danger' %}x-circle{% elif category == 'warning' %}exclamation-triangle{% else %}info-circle{% endif %} me-1"></i>
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+<!-- Main content -->
+<main class="container-fluid px-4 py-3 flex-grow-1">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="footer-isss mt-auto py-3">
+  <div class="container text-center">
+    <span class="text-white-50 small">
+      &copy; {{ now.year if now is defined else '2026' }} Todos los derechos reservados &mdash; Bitfarma
+    </span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

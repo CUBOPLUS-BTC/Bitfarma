@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Medicamento – Bitfarma{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="d-flex align-items-center mb-4">
+      <a href="{{ url_for('admin_inventory') }}" class="btn btn-light btn-sm me-3">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h4 class="fw-bold mb-0">
+        <i class="bi bi-capsule me-2 text-isss"></i>{{ action }} Medicamento
+      </h4>
+    </div>
+
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <form method="POST">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Nombre del Medicamento</label>
+            <input type="text" class="form-control" name="nombre" required
+                   value="{{ med.nombre if med else '' }}"
+                   placeholder="Ej. Amoxicilina" />
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Concentración</label>
+              <input type="text" class="form-control" name="concentracion" required
+                     value="{{ med.concentracion if med else '' }}"
+                     placeholder="Ej. 500 mg" />
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Unidad</label>
+              <input type="text" class="form-control" name="unidad" required
+                     value="{{ med.unidad if med else '' }}"
+                     placeholder="Ej. tabletas" />
+            </div>
+          </div>
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <label class="form-label fw-semibold">Stock Actual</label>
+              <input type="number" class="form-control" name="stock" min="0" required
+                     value="{{ med.stock if med else 0 }}" />
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold">Stock Mínimo</label>
+              <input type="number" class="form-control" name="stock_minimo" min="0" required
+                     value="{{ med.stock_minimo if med else 10 }}" />
+              <div class="form-text">Se mostrará alerta si el stock cae a este nivel.</div>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-isss btn-lg">
+              <i class="bi bi-check2 me-1"></i>{{ action }} Medicamento
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

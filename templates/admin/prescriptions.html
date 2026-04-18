@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Recetas – Bitfarma{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4 class="fw-bold mb-0">
+    <i class="bi bi-file-medical me-2 text-isss"></i>Todas las Recetas
+  </h4>
+</div>
+
+<!-- Filter -->
+<div class="mb-3">
+  <div class="btn-group" role="group">
+    {% for s, label in [('', 'Todas'), ('pendiente', 'Pendientes'), ('en_proceso', 'En Proceso'), ('listo', 'Listas'), ('entregado', 'Entregadas')] %}
+    <a href="{{ url_for('admin_prescriptions', status=s) }}"
+       class="btn btn-{% if status_filter == s %}isss{% else %}outline-isss{% endif %} btn-sm">
+      {{ label }}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card shadow-sm border-0">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Paciente</th>
+          <th>NSS</th>
+          <th>Fecha Subida</th>
+          <th>Estado</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in prescriptions %}
+        <tr>
+          <td><strong>{{ p.id }}</strong></td>
+          <td>{{ p.patient.nombre_completo }}</td>
+          <td><small>{{ p.patient.num_seguro_social or '—' }}</small></td>
+          <td><small>{{ p.upload_date.strftime('%d/%m/%Y %H:%M') }}</small></td>
+          <td>
+            <span class="badge bg-{{ p.status_class() }}">{{ p.status_label() }}</span>
+          </td>
+          <td><small class="text-muted">{{ p.notes or '—' }}</small></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted py-3">No hay recetas.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

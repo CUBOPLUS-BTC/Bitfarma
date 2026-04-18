@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard Admin – Bitfarma{% endblock %}
+{% block content %}
+<div class="mb-4">
+  <h4 class="fw-bold mb-0">
+    <i class="bi bi-speedometer2 me-2 text-isss"></i>Dashboard Administrativo
+  </h4>
+  <small class="text-muted">Panel de control – Bitfarma</small>
+</div>
+
+<!-- Stats cards -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="card border-0 shadow-sm bg-isss text-white h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fs-2 fw-bold">{{ total_prescriptions }}</div>
+            <div class="small opacity-75">Total Recetas</div>
+          </div>
+          <i class="bi bi-file-medical display-4 opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card border-0 shadow-sm bg-warning text-dark h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fs-2 fw-bold">{{ pending }}</div>
+            <div class="small opacity-75">Recetas Pendientes</div>
+          </div>
+          <i class="bi bi-clock display-4 opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card border-0 shadow-sm bg-success text-white h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fs-2 fw-bold">{{ total_orders }}</div>
+            <div class="small opacity-75">Total Órdenes</div>
+          </div>
+          <i class="bi bi-bag display-4 opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="card border-0 shadow-sm bg-danger text-white h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fs-2 fw-bold">{{ low_stock_meds|length }}</div>
+            <div class="small opacity-75">Stock Bajo</div>
+          </div>
+          <i class="bi bi-exclamation-triangle display-4 opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Low stock alerts -->
+  {% if low_stock_meds %}
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-danger text-white fw-semibold">
+        <i class="bi bi-exclamation-triangle me-1"></i>Alertas de Stock Bajo
+      </div>
+      <div class="list-group list-group-flush">
+        {% for med in low_stock_meds %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold">{{ med.nombre }}</div>
+            <small class="text-muted">{{ med.concentracion }} {{ med.unidad }}</small>
+          </div>
+          <div class="text-end">
+            <span class="badge bg-{{ 'danger' if med.stock == 0 else 'warning text-dark' }} fs-6">
+              {{ med.stock }}
+            </span>
+            <small class="d-block text-muted">mín: {{ med.stock_minimo }}</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card-footer bg-transparent">
+        <a href="{{ url_for('admin_inventory') }}" class="btn btn-outline-danger btn-sm w-100">
+          <i class="bi bi-box-seam me-1"></i>Gestionar Inventario
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Recent orders -->
+  <div class="col-12 col-lg-{{ '7' if low_stock_meds else '12' }}">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-clock-history me-1"></i>Órdenes Recientes
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Paciente</th>
+              <th>Farmacéutico</th>
+              <th>Entrega</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in recent_orders %}
+            <tr>
+              <td><strong>{{ order.id }}</strong></td>
+              <td>{{ order.prescription.patient.nombre_completo }}</td>
+              <td>{{ order.pharmacist.nombre_completo }}</td>
+              <td>
+                {% if order.delivery_type == 'sucursal' %}
+                  <i class="bi bi-building text-muted"></i> Sucursal
+                {% else %}
+                  <i class="bi bi-truck text-muted"></i> Envío
+                {% endif %}
+              </td>
+              <td><span class="badge bg-{{ order.status_class() }}">{{ order.status_label() }}</span></td>
+              <td><small>{{ order.created_at.strftime('%d/%m/%Y') }}</small></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="text-center text-muted py-3">Sin órdenes aún.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer bg-transparent">
+        <a href="{{ url_for('admin_reports') }}" class="btn btn-outline-isss btn-sm">
+          <i class="bi bi-bar-chart me-1"></i>Ver Reportes Completos
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

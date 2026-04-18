@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}Subir Receta – Bitfarma{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="d-flex align-items-center mb-4">
+      <a href="{{ url_for('patient_dashboard') }}" class="btn btn-light btn-sm me-3">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <h4 class="fw-bold mb-0">
+        <i class="bi bi-upload me-2 text-isss"></i>Subir Receta Médica
+      </h4>
+    </div>
+
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
+        <div class="alert alert-info border-0 rounded-3 mb-4">
+          <i class="bi bi-info-circle me-1"></i>
+          <strong>Formatos aceptados:</strong> PDF, JPG, PNG — Máximo 10 MB
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+          <div class="mb-4">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-file-earmark-medical me-1"></i>Archivo de Receta
+            </label>
+            <div class="upload-area border-2 border-dashed rounded-3 p-5 text-center" id="dropZone">
+              <input type="file" class="d-none" id="fileInput" name="file"
+                     accept=".pdf,.jpg,.jpeg,.png" required />
+              <i class="bi bi-cloud-upload display-4 text-muted mb-3 d-block"></i>
+              <p class="text-muted mb-2">Arrastra tu receta aquí o</p>
+              <button type="button" class="btn btn-outline-isss"
+                      onclick="document.getElementById('fileInput').click()">
+                <i class="bi bi-folder2-open me-1"></i>Seleccionar Archivo
+              </button>
+              <div id="filePreview" class="mt-3 d-none">
+                <i class="bi bi-file-check-fill text-success fs-3"></i>
+                <p class="mb-0 fw-semibold" id="fileName"></p>
+                <small class="text-muted" id="fileSize"></small>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-chat-text me-1"></i>Notas adicionales <span class="text-muted">(opcional)</span>
+            </label>
+            <textarea class="form-control" name="notes" rows="3"
+                      placeholder="Ej. Alergia a la penicilina, peso actual, etc."></textarea>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-isss btn-lg" id="submitBtn" disabled>
+              <i class="bi bi-send me-1"></i>Enviar Receta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+const fileInput = document.getElementById('fileInput');
+const filePreview = document.getElementById('filePreview');
+const fileName = document.getElementById('fileName');
+const fileSize = document.getElementById('fileSize');
+const submitBtn = document.getElementById('submitBtn');
+const dropZone = document.getElementById('dropZone');
+
+fileInput.addEventListener('change', handleFile);
+
+dropZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) {
+    fileInput.files = e.dataTransfer.files;
+    handleFile();
+  }
+});
+
+function handleFile() {
+  const file = fileInput.files[0];
+  if (!file) return;
+  fileName.textContent = file.name;
+  const kb = (file.size / 1024).toFixed(1);
+  fileSize.textContent = kb > 1024 ? `${(kb/1024).toFixed(1)} MB` : `${kb} KB`;
+  filePreview.classList.remove('d-none');
+  submitBtn.disabled = false;
+}
+</script>
+{% endblock %}

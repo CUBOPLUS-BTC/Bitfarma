@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}Estado de Receta #{{ prescription.id }} – Bitfarma{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center mb-4">
+  <a href="{{ url_for('patient_dashboard') }}" class="btn btn-light btn-sm me-3">
+    <i class="bi bi-arrow-left"></i>
+  </a>
+  <div>
+    <h4 class="fw-bold mb-0">Receta #{{ prescription.id }}</h4>
+    <small class="text-muted">Subida el {{ prescription.upload_date.strftime('%d/%m/%Y a las %H:%M') }}</small>
+  </div>
+</div>
+
+<!-- Status timeline -->
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-body p-4">
+    <h6 class="fw-bold text-muted mb-4">
+      <i class="bi bi-diagram-3 me-1"></i>Estado de tu Receta
+    </h6>
+    <div class="row text-center g-3">
+      {% set steps = [
+        ('pendiente',   'Recibida',    'bi-inbox-fill',        'Receta recibida en farmacia'),
+        ('en_proceso',  'En Proceso',  'bi-arrow-repeat',      'Farmacéutico revisando tu receta'),
+        ('listo',       'Lista',       'bi-check-circle-fill', 'Medicamentos listos para retiro'),
+        ('entregado',   'Entregada',   'bi-bag-check-fill',    'Medicamentos entregados')
+      ] %}
+      {% set step_names = ['pendiente', 'en_proceso', 'listo', 'entregado'] %}
+      {% set current_idx = step_names.index(prescription.status) %}
+      {% for step, label, icon, desc in steps %}
+        {% set step_idx = step_names.index(step) %}
+        <div class="col-3">
+          <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2
+            {% if step_idx < current_idx %}bg-success text-white
+            {% elif step_idx == current_idx %}bg-isss text-white shadow
+            {% else %}bg-light text-muted{% endif %}"
+            style="width:56px;height:56px;font-size:22px">
+            <i class="bi {{ icon }}"></i>
+          </div>
+          <div class="fw-semibold small
+            {% if step_idx <= current_idx %}text-isss{% else %}text-muted{% endif %}">
+            {{ label }}
+          </div>
+          {% if step_idx == current_idx %}
+          <small class="text-muted">{{ desc }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Prescription file -->
+<div class="row g-4">
+  <div class="col-12 col-lg-5">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-file-earmark-image me-1"></i>Archivo Subido
+      </div>
+      <div class="card-body text-center">
+        {% set ext = prescription.filename.rsplit('.', 1)[1].lower() %}
+        {% if ext in ['jpg', 'jpeg', 'png'] %}
+          <img src="{{ url_for('uploaded_file', filename=prescription.filename) }}"
+               class="img-fluid rounded" style="max-height:300px" alt="Receta" />
+        {% else %}
+          <div class="py-4">
+            <i class="bi bi-file-pdf-fill display-1 text-danger"></i>
+            <p class="mt-2 text-muted">Archivo PDF</p>
+            <a href="{{ url_for('uploaded_file', filename=prescription.filename) }}"
+               class="btn btn-outline-danger btn-sm" target="_blank">
+              <i class="bi bi-eye me-1"></i>Ver PDF
+            </a>
+          </div>
+        {% endif %}
+        {% if prescription.notes %}
+        <p class="mt-3 text-muted small fst-italic">"{{ prescription.notes }}"</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders detail -->
+  <div class="col-12 col-lg-7">
+    {% if orders %}
+      {% for order in orders %}
+      <div class="card shadow-sm border-0 mb-3">
+        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+          <span class="fw-semibold">
+            <i class="bi bi-bag me-1"></i>Orden #{{ order.id }}
+          </span>
+          <span class="badge bg-{{ order.status_class() }}">{{ order.status_label() }}</span>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-6">
+              <small class="text-muted">Fecha:</small>
+              <div class="fw-semibold">{{ order.created_at.strftime('%d/%m/%Y') }}</div>
+            </div>
+            <div class="col-6">
+              <small class="text-muted">Entrega:</small>
+              <div class="fw-semibold">
+                {% if order.delivery_type == 'sucursal' %}
+                  <i class="bi bi-building me-1"></i>Retiro en Sucursal
+                {% else %}
+                  <i class="bi bi-truck me-1"></i>Envío a Domicilio
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if order.delivery_address %}
+          <div class="mb-2">
+            <small class="text-muted">Dirección de envío:</small>
+            <div>{{ order.delivery_address }}</div>
+          </div>
+          {% endif %}
+
+          <hr class="my-2" />
+          <h6 class="fw-semibold mb-2">Medicamentos:</h6>
+          {% for item in order.items %}
+          <div class="bg-light rounded-3 p-3 mb-2">
+            <div class="d-flex justify-content-between">
+              <strong>{{ item.medication.nombre }}</strong>
+              <span class="badge bg-secondary">{{ item.cantidad }} {{ item.medication.unidad }}</span>
+            </div>
+            <small class="text-muted">
+              {{ item.medication.concentracion }} — Dosis: {{ item.dosis_indicada }}<br>
+              Frecuencia: {{ item.frecuencia }} — Duración: {{ item.duracion }}
+            </small>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center py-4">
+          <i class="bi bi-hourglass-split display-4 text-muted opacity-50"></i>
+          <p class="text-muted mt-2">Tu receta está siendo revisada.<br>Pronto tendrás novedades.</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

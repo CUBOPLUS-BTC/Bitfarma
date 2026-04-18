@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Sesión – Bitfarma{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+<div class="card-header text-center" style="background-color: #004085; color: white; padding: 25px;">        <img src="{{ url_for('static', filename='logo_bitfarma.png') }}" 
+             alt="Bitfarma Logo" 
+             style="max-width: 200px; height: auto; display: block; margin: 0 auto 10px;">
+        
+        <small class="opacity-75">Sistema de Gestión Farmacéutica</small>
+      </div>
+      <div class="card-body p-4">
+        <h5 class="mb-4 text-center text-muted">Iniciar Sesión</h5>
+        <form method="POST">
+          <div class="mb-3">
+            <label for="username" class="form-label fw-semibold">
+              <i class="bi bi-person me-1"></i>Usuario
+            </label>
+            <input type="text" class="form-control" id="username" name="username"
+                   placeholder="Ingresa tu usuario" required autofocus />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label fw-semibold">
+              <i class="bi bi-lock me-1"></i>Contraseña
+            </label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" name="password"
+                     placeholder="Ingresa tu contraseña" required />
+              <button class="btn btn-outline-secondary" type="button" id="togglePass">
+                <i class="bi bi-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-isss btn-lg">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-center bg-light py-3">
+        <small class="text-muted">¿No tienes cuenta?
+          <a href="{{ url_for('register') }}" class="text-isss fw-semibold">Regístrate aquí</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.getElementById('togglePass').addEventListener('click', function() {
+  const input = document.getElementById('password');
+  const icon = document.getElementById('eyeIcon');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.className = 'bi bi-eye-slash';
+  } else {
+    input.type = 'password';
+    icon.className = 'bi bi-eye';
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Inventario – Bitfarma{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4 class="fw-bold mb-0">
+    <i class="bi bi-box-seam me-2 text-isss"></i>Inventario de Medicamentos
+  </h4>
+  <a href="{{ url_for('admin_med_new') }}" class="btn btn-isss">
+    <i class="bi bi-plus-circle me-1"></i>Agregar Medicamento
+  </a>
+</div>
+
+{% if medications %}
+<div class="card shadow-sm border-0">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0" id="inventoryTable">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Concentración</th>
+          <th>Unidad</th>
+          <th>Stock Actual</th>
+          <th>Stock Mínimo</th>
+          <th>Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for med in medications %}
+        <tr class="{% if med.stock == 0 %}table-danger{% elif med.is_low_stock() %}table-warning{% endif %}">
+          <td>{{ med.id }}</td>
+          <td class="fw-semibold">{{ med.nombre }}</td>
+          <td>{{ med.concentracion }}</td>
+          <td>{{ med.unidad }}</td>
+          <td>
+            <span class="badge fs-6 px-3 bg-{{ 'danger' if med.stock == 0 else 'warning text-dark' if med.is_low_stock() else 'success' }}">
+              {{ med.stock }}
+            </span>
+          </td>
+          <td>{{ med.stock_minimo }}</td>
+          <td>
+            {% if med.stock == 0 %}
+              <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Sin Stock</span>
+            {% elif med.is_low_stock() %}
+              <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>Stock Bajo</span>
+            {% else %}
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Disponible</span>
+            {% endif %}
+          </td>
+          <td class="text-center">
+            <a href="{{ url_for('admin_med_edit', med_id=med.id) }}"
+               class="btn btn-sm btn-outline-primary me-1">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <form method="POST" action="{{ url_for('admin_med_delete', med_id=med.id) }}"
+                  class="d-inline" onsubmit="return confirm('¿Eliminar {{ med.nombre }}?')">
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Summary bar -->
+<div class="row g-3 mt-3">
+  {% set total = medications|length %}
+  {% set low = medications|selectattr('stock', 'le', 0)|list|length %}
+  {% set warning = medications|selectattr('is_low_stock')|list|length %}
+  <div class="col-auto">
+    <span class="badge bg-secondary px-3 py-2">Total: {{ total }}</span>
+  </div>
+  <div class="col-auto">
+    <span class="badge bg-danger px-3 py-2">Sin stock: {{ low }}</span>
+  </div>
+  <div class="col-auto">
+    <span class="badge bg-warning text-dark px-3 py-2">Stock bajo: {{ warning }}</span>
+  </div>
+</div>
+{% else %}
+<div class="text-center py-5">
+  <i class="bi bi-box display-1 text-muted opacity-50"></i>
+  <h5 class="mt-3 text-muted">No hay medicamentos en inventario</h5>
+  <a href="{{ url_for('admin_med_new') }}" class="btn btn-isss mt-2">
+    <i class="bi bi-plus-circle me-1"></i>Agregar el primero
+  </a>
+</div>
+{% endif %}
+{% endblock %}

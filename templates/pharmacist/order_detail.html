@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Orden #{{ order.id }} – Bitfarma{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center mb-4">
+  <a href="{{ url_for('pharmacist_prescription', prescription_id=order.prescription_id) }}"
+     class="btn btn-light btn-sm me-3">
+    <i class="bi bi-arrow-left"></i>
+  </a>
+  <div>
+    <h4 class="fw-bold mb-0">Orden #{{ order.id }}</h4>
+    <small class="text-muted">Creada el {{ order.created_at.strftime('%d/%m/%Y a las %H:%M') }}</small>
+  </div>
+  <span class="badge bg-{{ order.status_class() }} ms-3 fs-6">{{ order.status_label() }}</span>
+</div>
+
+<div class="row g-4">
+  <div class="col-12 col-lg-8">
+    <!-- Order items -->
+    <div class="card shadow-sm border-0 mb-3">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-capsule me-1"></i>Medicamentos Dispensados
+      </div>
+      <div class="card-body p-0">
+        {% for item in order.items %}
+        <div class="border-bottom p-3 {% if loop.last %}border-0{% endif %}">
+          <div class="d-flex justify-content-between align-items-start mb-1">
+            <div>
+              <h6 class="mb-0 fw-bold">{{ item.medication.nombre }}</h6>
+              <small class="text-muted">
+                {{ item.medication.concentracion }} — {{ item.medication.unidad }}
+              </small>
+            </div>
+            <span class="badge bg-isss fs-6 px-3">{{ item.cantidad }} {{ item.medication.unidad }}</span>
+          </div>
+          <div class="row mt-2 g-2">
+            <div class="col-4">
+              <small class="text-muted d-block">Dosis</small>
+              <span class="fw-semibold small">{{ item.dosis_indicada }}</span>
+            </div>
+            <div class="col-4">
+              <small class="text-muted d-block">Frecuencia</small>
+              <span class="fw-semibold small">{{ item.frecuencia }}</span>
+            </div>
+            <div class="col-4">
+              <small class="text-muted d-block">Duración</small>
+              <span class="fw-semibold small">{{ item.duracion }}</span>
+            </div>
+          </div>
+          <div class="mt-2">
+            <a href="{{ url_for('generate_vineta', order_id=order.id, item_id=item.id) }}"
+               class="btn btn-outline-isss btn-sm">
+              <i class="bi bi-printer me-1"></i>
+              {% if item.label %}Descargar Viñeta{% else %}Generar Viñeta{% endif %}
+            </a>
+            {% if item.label %}
+            <small class="text-muted ms-2">
+              <i class="bi bi-check-circle-fill text-success"></i>
+              Generada el {{ item.label.generated_at.strftime('%d/%m/%Y') }}
+            </small>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <!-- Delivery info -->
+    <div class="card shadow-sm border-0 mb-3">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-truck me-1"></i>Información de Entrega
+      </div>
+      <div class="card-body">
+        <div class="mb-2">
+          <small class="text-muted">Tipo:</small>
+          <div class="fw-semibold">
+            {% if order.delivery_type == 'sucursal' %}
+              <i class="bi bi-building text-isss me-1"></i>Retiro en Sucursal
+            {% else %}
+              <i class="bi bi-truck text-isss me-1"></i>Envío a Domicilio
+            {% endif %}
+          </div>
+        </div>
+        {% if order.delivery_address %}
+        <div class="mb-2">
+          <small class="text-muted">Dirección:</small>
+          <div>{{ order.delivery_address }}</div>
+        </div>
+        {% endif %}
+        <hr />
+        <div>
+          <small class="text-muted">Paciente:</small>
+          <div class="fw-semibold">{{ order.prescription.patient.nombre_completo }}</div>
+          <small class="text-muted">NSS: {{ order.prescription.patient.num_seguro_social or 'N/A' }}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update status -->
+    {% if order.status != 'entregado' %}
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-light fw-semibold">
+        <i class="bi bi-arrow-right-circle me-1"></i>Actualizar Estado
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('update_order_status', order_id=order.id) }}">
+          {% if order.status == 'en_proceso' %}
+          <button type="submit" name="status" value="listo" class="btn btn-success w-100 mb-2">
+            <i class="bi bi-check-circle me-1"></i>Marcar como Listo
+          </button>
+          {% endif %}
+          {% if order.status in ('en_proceso', 'listo') %}
+          <button type="submit" name="status" value="entregado" class="btn btn-secondary w-100">
+            <i class="bi bi-bag-check me-1"></i>Marcar como Entregado
+          </button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <div class="alert alert-success">
+      <i class="bi bi-check2-all me-1"></i>Esta orden fue entregada.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

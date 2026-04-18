@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Registro de Paciente – Bitfarma{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-isss text-white text-center py-3">
+        <i class="bi bi-person-plus-fill fs-2 d-block mb-1"></i>
+        <h5 class="mb-0 fw-bold">Registro de Paciente</h5>
+      </div>
+      <div class="card-body p-4">
+        <form method="POST">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-person-vcard me-1"></i>Nombre Completo
+            </label>
+            <input type="text" class="form-control" name="nombre_completo"
+                   placeholder="Ej. Juan Carlos Martínez López" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-card-text me-1"></i>Número de Seguro Social
+            </label>
+            <input type="text" class="form-control" name="num_seguro_social"
+                   placeholder="Ej. 07010112345678" />
+            <div class="form-text">Opcional, pero recomendado para agilizar trámites.</div>
+          </div>
+          <hr />
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-person me-1"></i>Usuario
+            </label>
+            <input type="text" class="form-control" name="username"
+                   placeholder="Elige un nombre de usuario" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              <i class="bi bi-lock me-1"></i>Contraseña
+            </label>
+            <input type="password" class="form-control" name="password"
+                   placeholder="Mínimo 6 caracteres" minlength="6" required />
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-isss btn-lg">
+              <i class="bi bi-person-check me-1"></i>Crear Cuenta
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-center bg-light py-3">
+        <small class="text-muted">¿Ya tienes cuenta?
+          <a href="{{ url_for('login') }}" class="text-isss fw-semibold">Inicia sesión</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

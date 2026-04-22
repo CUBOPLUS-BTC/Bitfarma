@@ -1,0 +1,255 @@
+To design a **hybrid logistics model (motorcycles + kiosks)** for medication access in the **San Salvador region**, we can estimate efficiency gains by comparing delivery coverage, cost, and response time.
+
+
+-- 
+
+
+# 1. Baseline (Motorcycle-Only Model)
+
+
+Typical assumptions for urban delivery:
+
+
+* Avg. delivery radius per motorcycle: **3–5 km**
+
+* Deliveries per rider/day: **20–30**
+
+* Cost per delivery: **$2.50–$4.00**
+
+* Limitation: traffic congestion + repeated long-distance trips
+
+
+---
+
+
+# 2. Hybrid Model (Kiosks + Reduced Motorcycles)
+
+
+## Strategic Setup
+
+
+* Place **kiosks in high-density zones** (clinics, markets, transit hubs)
+
+* Each kiosk acts as a **micro-distribution center**
+
+
+### Example Layout (San Salvador)
+
+
+* Population: ~1.5–1.8 million metro
+
+* Suggested kiosks: **12–20 locations**
+
+* Coverage radius per kiosk: **1.5–2 km**
+
+
+👉 This creates **overlapping coverage**, reducing travel distance.
+
+
+---
+
+
+# 3. Efficiency Calculation
+
+
+## A. Distance Reduction
+
+
+Without kiosks:
+
+
+* Avg. delivery distance: **4 km**
+
+
+With kiosks:
+
+
+* Avg. distance drops to: **1.5–2 km**
+
+
+**Efficiency gain:**
+
+
+* Distance reduced by ~50–60%
+
+
+---
+
+
+## B. Delivery Capacity
+
+
+Motorcycle-only:
+
+
+* 25 deliveries/day/rider
+
+
+Hybrid:
+
+
+* Shorter routes → **40–50 deliveries/day/rider**
+
+
+**Productivity increase: ~70–100%**
+
+
+---
+
+
+## C. Fleet Reduction
+
+
+If demand = 10,000 deliveries/day:
+
+
+Motorcycle-only:
+
+
+* 10,000 / 25 ≈ **400 riders**
+
+
+Hybrid model:
+
+
+* 10,000 / 45 ≈ **220 riders**
+
+
+👉 **Reduction: ~45% fewer motorcycles**
+
+
+---
+
+
+## D. Cost Savings
+
+
+Motorcycle-only:
+
+
+* 10,000 × $3 = **$30,000/day**
+
+
+Hybrid:
+
+
+* Lower cost per delivery (~$1.80–$2.20)
+
+* 10,000 × $2 ≈ **$20,000/day**
+
+
+👉 **Savings: ~$10,000/day (~33%)**
+
+
+---
+
+
+## E. Delivery Time
+
+
+Motorcycle-only:
+
+
+* 60–90 minutes avg.
+
+
+Hybrid:
+
+
+* 20–40 minutes avg.
+
+
+👉 Faster service improves:
+
+
+* Chronic patient adherence
+
+* Emergency response capability
+
+
+---
+
+
+# 4. Optimal Kiosk Placement Strategy
+
+
+Focus on:
+
+
+* Hospitals & clinics (high prescription volume)
+
+* Dense residential zones
+
+* Public transport hubs
+
+* Rural-urban edges (last-mile gap)
+
+
+**Key idea:**
+
+Instead of “pharmacy → home,” shift to:
+
+👉 **pharmacy → kiosk → home/pickup**
+
+
+
+# 5. Final Model Summary
+
+
+| Metric              | Motorcycle Only | Hybrid Model |
+
+| ------------------- | --------------- | ------------ |
+
+| Riders needed       | ~400            | ~220         |
+
+| Cost per delivery   | $3.00           | $2.00        |
+
+| Daily cost          | $30,000         | $20,000      |
+
+| Delivery time       | 60–90 min       | 20–40 min    |
+
+| Coverage efficiency | Low             | High         |
+
+
+---
+
+
+# 6. Strategic Insight
+
+
+The hybrid model works because it:
+
+
+* **Decentralizes inventory**
+
+* **Reduces last-mile distance**
+
+* **Improves scalability**
+
+* **Balances cost vs speed**
+
+
+-
+
+
+# 7. Recommendation
+
+
+Start with a **pilot model**:
+
+
+* 8 kiosks
+
+* 100–120 riders
+
+* Focus on chronic patients (recurring demand)
+
+
+Then scale based on:
+
+
+* demand density
+
+* prescription volume
+
+* delivery heat map

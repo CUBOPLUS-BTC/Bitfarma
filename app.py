@@ -19,7 +19,7 @@ from label_generator import generate_label
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'isss-farmacia-secret-key-2024'
+app.config['SECRET_KEY'] = 'isss-farmacia-secret-key-2026'
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     'sqlite:///' + os.path.join(BASE_DIR, 'instance', 'farmacia.db')
 )

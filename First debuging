@@ -1,0 +1,14 @@
+The 3 bugs that completely break the payment flow right now
+
+Bug 1 — No webhook signature verification is the most dangerous. 
+Anyone on the internet can send a fake POST to /webhook/tiankii and get their order marked as paid for free. 
+Zero Bitcoin transferred, free medications. This is not a theoretical risk — it's an open door.
+
+Bug 2 — item.cantidad vs item.quantity is a 2-minute typo fix that is silently destroying every single payment confirmation. 
+finalize_payment() raises AttributeError every time Tiankii calls the webhook, so no order is ever successfully closed and stock is never deducted. 
+The payment processor receives a 200 OK, stops retrying, and the order stays stuck forever.
+
+Bug 3 — Wrong status values ('PAID', 'COMPLETED', 'SUCCESS') means even after fixing Bugs 1 and 2, the payment confirmation logic still never triggers because Tiankii sends InvoiceSettled, not those strings.
+These three together mean the entire Bitcoin payment pipeline is broken end-to-end, even though the API call to create invoices appears to work fine.
+The remaining 5 bugs cover security (hardcoded secrets, open redirect), a broken UI template with the wrong QR type, a state machine inconsistency, and a race condition. 
+All fixable in under 2 hours total.
